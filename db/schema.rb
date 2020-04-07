@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_07_021032) do
+ActiveRecord::Schema.define(version: 2020_04_07_181909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,22 +32,20 @@ ActiveRecord::Schema.define(version: 2020_04_07_021032) do
     t.string "description"
     t.string "type"
     t.string "street_address"
-    t.bigint "cities_id"
-    t.bigint "amenities_id"
+    t.bigint "city_id"
+    t.bigint "amenity_id"
     t.string "photo"
-    t.index ["amenities_id"], name: "index_apartments_on_amenities_id"
-    t.index ["cities_id"], name: "index_apartments_on_cities_id"
+    t.index ["amenity_id"], name: "index_apartments_on_amenity_id"
+    t.index ["city_id"], name: "index_apartments_on_city_id"
   end
 
   create_table "cities", force: :cascade do |t|
     t.string "name"
-    t.bigint "neighborhoods_id"
-    t.index ["neighborhoods_id"], name: "index_cities_on_neighborhoods_id"
   end
 
   create_table "contract_agreements", force: :cascade do |t|
-    t.bigint "users_id"
-    t.index ["users_id"], name: "index_contract_agreements_on_users_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_contract_agreements_on_user_id"
   end
 
   create_table "listings", force: :cascade do |t|
@@ -56,15 +54,17 @@ ActiveRecord::Schema.define(version: 2020_04_07_021032) do
     t.datetime "updated_at", null: false
     t.integer "price"
     t.integer "duration"
-    t.bigint "apartments_id"
-    t.bigint "contract_agreements_id"
-    t.index ["apartments_id"], name: "index_listings_on_apartments_id"
-    t.index ["contract_agreements_id"], name: "index_listings_on_contract_agreements_id"
+    t.bigint "apartment_id"
+    t.bigint "contract_agreement_id"
+    t.index ["apartment_id"], name: "index_listings_on_apartment_id"
+    t.index ["contract_agreement_id"], name: "index_listings_on_contract_agreement_id"
     t.index ["user_id"], name: "index_listings_on_user_id"
   end
 
   create_table "neighborhoods", force: :cascade do |t|
     t.string "name"
+    t.bigint "city_id"
+    t.index ["city_id"], name: "index_neighborhoods_on_city_id"
   end
 
   create_table "open_house_appts", force: :cascade do |t|
@@ -93,11 +93,13 @@ ActiveRecord::Schema.define(version: 2020_04_07_021032) do
     t.string "about_me"
     t.string "gender"
     t.string "photo"
+    t.bigint "trait_id"
+    t.index ["trait_id"], name: "index_profiles_on_trait_id"
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.bigint "apartments_id"
-    t.index ["apartments_id"], name: "index_rooms_on_apartments_id"
+    t.bigint "apartment_id"
+    t.index ["apartment_id"], name: "index_rooms_on_apartment_id"
   end
 
   create_table "traits", force: :cascade do |t|
@@ -119,21 +121,20 @@ ActiveRecord::Schema.define(version: 2020_04_07_021032) do
     t.string "last_name"
     t.integer "phone_number"
     t.integer "dob"
-    t.bigint "profiles_id"
+    t.bigint "profile_id"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["profiles_id"], name: "index_users_on_profiles_id"
+    t.index ["profile_id"], name: "index_users_on_profile_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "apartments", "amenities", column: "amenities_id"
-  add_foreign_key "apartments", "cities", column: "cities_id"
-  add_foreign_key "cities", "neighborhoods", column: "neighborhoods_id"
-  add_foreign_key "listings", "apartments", column: "apartments_id"
-  add_foreign_key "listings", "contract_agreements", column: "contract_agreements_id"
+  add_foreign_key "apartments", "amenities"
+  add_foreign_key "apartments", "cities"
+  add_foreign_key "listings", "apartments"
+  add_foreign_key "listings", "contract_agreements"
   add_foreign_key "listings", "users"
   add_foreign_key "open_house_appts", "open_houses"
   add_foreign_key "open_house_appts", "users"
   add_foreign_key "open_houses", "listings"
-  add_foreign_key "rooms", "apartments", column: "apartments_id"
-  add_foreign_key "users", "profiles", column: "profiles_id"
+  add_foreign_key "rooms", "apartments"
+  add_foreign_key "users", "profiles"
 end
