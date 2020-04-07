@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_06_232844) do
+ActiveRecord::Schema.define(version: 2020_04_07_021032) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,13 @@ ActiveRecord::Schema.define(version: 2020_04_06_232844) do
   create_table "rooms", force: :cascade do |t|
     t.bigint "apartments_id"
     t.index ["apartments_id"], name: "index_rooms_on_apartments_id"
+  end
+
+  create_table "traits", force: :cascade do |t|
+    t.boolean "smokes"
+    t.boolean "has_cat"
+    t.boolean "has_dog"
+    t.boolean "veg"
   end
 
   create_table "users", force: :cascade do |t|
