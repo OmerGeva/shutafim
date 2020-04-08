@@ -10,7 +10,7 @@ class ListingsController < ApplicationController
   def show
     authorize @listing
   end
-  
+
   def new
     @listing = Listing.new
     @apartment = Apartment.new
@@ -30,6 +30,7 @@ class ListingsController < ApplicationController
 
   def set_listing
     @listing = Listing.find(params[:id])
+  end
 
   def listing_params
     params.require(:listing).permit(:price, :duration)

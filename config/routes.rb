@@ -6,7 +6,4 @@ Rails.application.routes.draw do
   resources :listings
 
   resources :profiles, only: [:new, :create]
-
-
-
 end
