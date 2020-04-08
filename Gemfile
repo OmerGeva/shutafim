@@ -24,6 +24,7 @@ gem 'redis', '~> 4.0'
 # gem 'capistrano-rails', group: :development
 
 gem 'cloudinary', '~> 1.12.0'
+gem 'pundit'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

@@ -1,6 +1,8 @@
 class ProfilesController < ApplicationController
   def new
     @profile = Profile.new
+
+    authorize @profile
   end
 
   def create
@@ -20,6 +22,9 @@ class ProfilesController < ApplicationController
     else
       render :new
     end
+
+    authorize @profile
+
   end
 
   private
