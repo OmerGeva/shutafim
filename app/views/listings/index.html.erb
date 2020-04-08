@@ -1,3 +1,5 @@
-<% if policy(Restaurant).create? %>
-  <%= link_to "New restaurant", new_restaurant_path %>
+<% @listings.each do |listing| %>
+  <%= link_to listing_path(listing) do %>
+    <p><%= listing %></p>
+  <% end %>
 <% end %>
