@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8 m-auto p-3">
+      <h2>Create your profile!</h2>
+
+      <%= simple_form_for(@profile) do |f| %>
+        <div class="form-inputs">
+          <%= f.input :gender,
+                      collection: ['male', 'female', 'other'],
+                      required: false,
+                      autofocus: true,
+                      input_html: { autocomplete: "profession" } %>
+          <%= f.input :profession,
+                      required: false,
+                      autofocus: true,
+                      input_html: { autocomplete: "profession" } %>
+          <%= f.input :about_me,
+                      as: :text,
+                      required: false,
+                      input_html: { autocomplete: "about-me" } %>
+          <%= f.input :photo, as: :file %>
+
+          <%= f.input :trait, as: :check_boxes, collection: Trait::TRAITS %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, "Create Profile", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
