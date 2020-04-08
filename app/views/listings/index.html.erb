@@ -1,0 +1,3 @@
+<% if policy(Restaurant).create? %>
+  <%= link_to "New restaurant", new_restaurant_path %>
+<% end %>
