@@ -19,10 +19,11 @@
                       required: false,
                       input_html: { autocomplete: "about-me" } %>
           <%= f.input :photo, as: :file %>
-        </div>
 
+          <%= f.input :trait, as: :check_boxes, collection: Trait::TRAITS %>
+        </div>
         <div class="form-actions">
-          <%= f.button :submit, "Log in" %>
+          <%= f.button :submit, "Create Profile", class: 'btn btn-primary' %>
         </div>
       <% end %>
     </div>

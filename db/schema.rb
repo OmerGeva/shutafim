@@ -125,10 +125,10 @@ ActiveRecord::Schema.define(version: 2020_04_07_191405) do
   end
 
   create_table "traits", force: :cascade do |t|
-    t.boolean "smokes"
-    t.boolean "has_cat"
-    t.boolean "has_dog"
-    t.boolean "veg"
+    t.boolean "smokes", default: false
+    t.boolean "has_cat", default: false
+    t.boolean "has_dog", default: false
+    t.boolean "veg", default: false
   end
 
   create_table "users", force: :cascade do |t|
