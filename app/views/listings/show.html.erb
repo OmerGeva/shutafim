@@ -1,3 +1,50 @@
-<h2>Your Listing</h2>
-<%= @listing.price %>
-<%= @listing.duration %>
+<div class='container'>
+  <div class='card my-4'>
+    <%= image_tag(@listing.apartment.photo, alt: 'apartment photo', class: 'card-img-top') %>
+    <div class='card-body'>
+      <h2 class='card-title'><%= @listing.apartment.name %></h2>
+      <h5 class='card-subtitle mb-3 text-muted'>
+        <%= @listing.user.first_name %> <%= @listing.user.last_name %>
+      </h5>
+      <div class="row">
+        <div class="col-7">
+          <p>
+            <b>Price per month:</b> ₪<%= @listing.price %><br>
+            <b>Bedrooms:</b> <%= @listing.apartment.bedrooms %><br>
+            <b>Bathrooms:</b> <%= @listing.apartment.bathrooms %><br>
+            <b>Total rooms:</b> <%= @listing.apartment.total_rooms %><br>
+            <b>City:</b> <%= @listing.apartment.city.name %><br>
+            <b>Address:</b> <%= @listing.apartment.street_address %>
+          </p>
+        </div>
+        <div class="col-5">
+          <h5>Amenities:</h5>
+          <ul>
+            <% if @listing.apartment.amenity.wifi %>
+              <li>WiFi</li>
+            <% end %>
+            <% if @listing.apartment.amenity.dishwasher %>
+              <li>Dishwasher</li>
+            <% end %>
+            <% if @listing.apartment.amenity.laundry_washer %>
+              <li>Laundry washer</li>
+            <% end %>
+            <% if @listing.apartment.amenity.laundry_dryer %>
+              <li>Laundry dryer</li>
+            <% end %>
+            <% if @listing.apartment.amenity.cats_ok %>
+              <li>Cats allowed</li>
+            <% end %>
+            <% if @listing.apartment.amenity.dogs_ok %>
+              <li>Dogs allowed</li>
+            <% end %>
+            <% if @listing.apartment.amenity.air_conditioner %>
+              <li>Air conditioner</li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <p class='card-text'><%= @listing.apartment.description %></p>
+    </div>
+  </div>
+</div>

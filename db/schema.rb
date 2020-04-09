@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_09_153033) do
+ActiveRecord::Schema.define(version: 2020_04_09_185346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,13 +37,13 @@ ActiveRecord::Schema.define(version: 2020_04_09_153033) do
   end
 
   create_table "amenities", force: :cascade do |t|
-    t.boolean "wifi"
-    t.boolean "dishwasher"
-    t.boolean "laundry_washer"
-    t.boolean "laundry_dryer"
-    t.boolean "cats_ok"
-    t.boolean "dogs_ok"
-    t.boolean "air_conditioner"
+    t.boolean "wifi", default: false
+    t.boolean "dishwasher", default: false
+    t.boolean "laundry_washer", default: false
+    t.boolean "laundry_dryer", default: false
+    t.boolean "cats_ok", default: false
+    t.boolean "dogs_ok", default: false
+    t.boolean "air_conditioner", default: false
   end
 
   create_table "apartments", force: :cascade do |t|
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2020_04_09_153033) do
     t.string "street_address"
     t.bigint "city_id"
     t.bigint "amenity_id"
+    t.string "name"
     t.index ["amenity_id"], name: "index_apartments_on_amenity_id"
     t.index ["city_id"], name: "index_apartments_on_city_id"
   end
