@@ -1,5 +1,6 @@
 class Apartment < ApplicationRecord
-  belongs_to :listing
-  has_one :city
-  has_one :amenity
+  has_one_attached :photo
+  has_one :listing
+  belongs_to :city
+  belongs_to :amenity
 end
