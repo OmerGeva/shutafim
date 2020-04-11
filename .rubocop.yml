@@ -21,6 +21,8 @@ WordArray:
   Enabled: false
 AbcSize:
   Enabled: false
+Style/Tab:
+  Enabled: false
 MutableConstant:
   Enabled: false
 SignalException:

@@ -3,9 +3,8 @@ Rails.application.routes.draw do
 
   end
   root to: 'pages#home'
-  resources :listings do
-    resources :apartments
-  end
+
+  resources :listings
 
   resources :profiles, only: [:new, :create]
 end
