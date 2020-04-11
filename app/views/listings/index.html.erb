@@ -1,0 +1,25 @@
+<div class='container d-flex mt-2'>
+  <% @listings.each do |listing| %>
+    <%= link_to listing_path(listing) do %>
+      <div class='card listing-card m-2'>
+        <%= image_tag(listing.apartment.photo, alt: 'apartment photo', class: 'card-img-top') %>
+        <div class='card-body'>
+          <h4 class='card-title'><%= listing.apartment.name %></h4>
+          <h6 class='card-subtitle mb-3 text-muted'>
+            <%= listing.user.first_name %> <%= listing.user.last_name %>
+          </h6>
+          <div class="card-text">
+            <p>
+              <b>Price per month:</b> ₪<%= listing.price %><br>
+              <b>Bedrooms:</b> <%= listing.apartment.bedrooms %><br>
+              <b>Bathrooms:</b> <%= listing.apartment.bathrooms %><br>
+              <b>Total rooms:</b> <%= listing.apartment.total_rooms %><br>
+              <b>City:</b> <%= listing.apartment.city.name %><br>
+              <b>Address:</b> <%= listing.apartment.street_address %>
+            </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
