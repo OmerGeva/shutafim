@@ -15,6 +15,7 @@ class ListingsController < ApplicationController
     @listing = Listing.new
     @apartment = Apartment.new
     authorize @listing
+
   end
 
   def create
@@ -28,6 +29,7 @@ class ListingsController < ApplicationController
     @listing.user = current_user
     @listing.apartment = @apartment
     authorize @listing
+
     if @listing.save
       redirect_to listing_path(@listing)
     else
