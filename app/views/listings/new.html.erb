@@ -11,6 +11,10 @@
               <%= p.input :bedrooms, label: 'Number of Bedrooms' %>
               <%= p.input :bathrooms, label: 'Number of Bathrooms' %>
               <%= p.input :photo, as: :file %>
+              <%= f.simple_fields_for :cities do |p| %>
+                <%= p.input :name, label: 'City' %>
+              <% end %>
+
             <% end %>
           <%= f.input :price, label: "Cost per month" %>
           <%= f.input :duration, label: "Available for" %>
