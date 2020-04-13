@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   end
   root to: 'pages#home'
+
   
   resources :listings do
     resources :apartments
