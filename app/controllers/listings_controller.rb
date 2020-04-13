@@ -14,11 +14,22 @@ class ListingsController < ApplicationController
   def new
     @listing = Listing.new
     @apartment = Apartment.new
+    authorize @listing
+
   end
 
   def create
     @listing = Listing.new(listing_params)
+    @city = City.first
+    @amenity = Amenity.first
+    @apartment = Apartment.new(params[:listing][:apartments].permit!)
+    @apartment.city = @city
+    @apartment.amenity = @amenity
+    @apartment.save
     @listing.user = current_user
+    @listing.apartment = @apartment
+    authorize @listing
+
     if @listing.save
       redirect_to listing_path(@listing)
     else

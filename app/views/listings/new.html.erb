@@ -1,6 +1,28 @@
-<h2>Create a new Listing</h2>
-<%= simple_form_for [@listing] do |f| %>
-<%= f.input :price %>
-<%= f.input :duration %>
-<%= f.submit "New Listing" %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-8 m-auto p-3">
+      <h2>Create a New Listing!</h2>
+      <%= simple_form_for [@listing] do |f| %>
+        <div class="form-inputs">
+            <%= f.simple_fields_for :apartments do |p| %>
+              <%= p.input :name, label: 'Catchy Title' %>
+              <%= p.input :street_address, label: 'Your exact address' %>
+              <%= p.input :description, label: 'Describe your place' %>
+              <%= p.input :bedrooms, label: 'Number of Bedrooms' %>
+              <%= p.input :bathrooms, label: 'Number of Bathrooms' %>
+              <%= p.input :photo, as: :file %>
+              <%= f.simple_fields_for :cities do |p| %>
+                <%= p.input :name, label: 'City' %>
+              <% end %>
+
+            <% end %>
+          <%= f.input :price, label: "Cost per month" %>
+          <%= f.input :duration, label: "Available for" %>
+        </div>
+        <div class="form-actions">
+          <%= f.button :submit, "Create Listing", class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

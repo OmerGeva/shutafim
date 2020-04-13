@@ -24,7 +24,6 @@ class ProfilesController < ApplicationController
     end
 
     authorize @profile
-
   end
 
   private
