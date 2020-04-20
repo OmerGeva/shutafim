@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   end
   root to: 'pages#home'
 
-  
+
   resources :listings do
     resources :apartments
   end
 
-  resources :profiles, only: [:new, :create]
+  resources :profiles, only: [:show, :new, :create]
 end

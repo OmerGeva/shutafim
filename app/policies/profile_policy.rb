@@ -5,6 +5,10 @@ class ProfilePolicy < ApplicationPolicy
     end
   end
 
+  def show?
+    record == user.profile
+  end
+
   def create?
     user
   end

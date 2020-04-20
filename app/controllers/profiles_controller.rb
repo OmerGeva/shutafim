@@ -5,6 +5,12 @@ class ProfilesController < ApplicationController
     authorize @profile
   end
 
+  def show
+    @profile = current_user.profile
+    @listings = current_user.listings
+    authorize @profile
+  end
+
   def create
     @profile = Profile.new(profile_params)
     traits = Trait.new
