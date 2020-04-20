@@ -1,0 +1,17 @@
+<div class="d-flex justify-content-center align-items-center">
+  <%= cl_image_tag @profile.photo.key, class: "avatar-large m-3", alt: "avatar-large" %>
+  <h2 class="m-3"><%= "#{current_user.first_name.capitalize} #{current_user.last_name.capitalize}" %></h2>
+</div>
+
+<h3 class="text-center mt-5">My Apartments</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <% @listings.each do |listing| %>
+        <div class="apartment-profile-card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path listing.apartment.photo.key %>')">
+          <h4><%= listing.apartment.street_address %></h4>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

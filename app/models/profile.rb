@@ -4,6 +4,7 @@ class Profile < ApplicationRecord
 
   has_one_attached :photo
 
+
   validates :gender, presence: true
   validates :about_me, presence: true
   validates :photo, presence: true
